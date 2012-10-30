@@ -1,13 +1,13 @@
 <?php
 
 // Put your device token here (without spaces):
-$deviceToken = '0a6d94833532c91dfc208a7500d6e4c4ad32dc4317a45da08f64d8f7f39a2b06';
+$deviceToken = 'ef285660437996364772572020bbe76c0a6eddf80fd2de2eadf5bfe4be17d242';
 
 // Put your private key's passphrase here:
 $passphrase = '';
 
 // Put your alert message here:
-$message = 'iPad Push!';
+$message = 'Sandy!';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -31,8 +31,7 @@ $body['aps'] = array(
 	'badge' => 18
 	);
 	
-//$body['category'] = 'profile';
-$body['category'] = 'profile';
+$body['category'] = 'message';
 $body['sender'] = 'jamesHAW';
 
 
