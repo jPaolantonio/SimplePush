@@ -12,7 +12,7 @@ $message = 'Sandy!';
 ////////////////////////////////////////////////////////////////////////////////
 
 $ctx = stream_context_create();
-stream_context_set_option($ctx, 'ssl', 'local_cert', 'apn_development_ipad.pem');
+stream_context_set_option($ctx, 'ssl', 'local_cert', 'apn_development.pem');
 stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
 
 // Open a connection to the APNS server
@@ -32,8 +32,7 @@ $body['aps'] = array(
 	);
 	
 $body['category'] = 'message';
-$body['sender'] = 'jamesHAW';
-
+//$body['sender'] = 'jamesHAW';
 
 // Encode the payload as JSON
 $payload = json_encode($body);
