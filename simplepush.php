@@ -1,21 +1,30 @@
 <?php
 
-// Put your device token here (without spaces):
-$deviceToken = 'ef285660437996364772572020bbe76c0a6eddf80fd2de2eadf5bfe4be17d242';
+$deviceToken = 'cd709e03d85823af923a21d63863bbc123a1456b1f31633873d46d68450a6d86';
+$message = 'iPad!';
 
-// Put your private key's passphrase here:
+    
+$body['aps'] = array(
+                     'alert' => $message,
+                     'badge' => 18
+                     );
+    
+//$body['category'] = 'message';
+$body['category'] = 'profile';
+//$body['category'] = 'dates';
+//$body['category'] = 'daily_dates';
+
+//$body['sender'] = 'jamesHAW';
+$body['sender'] = 'jerrytest35';
+    
+
+//Server stuff
 $passphrase = '';
 
-// Put your alert message here:
-$message = 'Sandy!';
-
-////////////////////////////////////////////////////////////////////////////////
-
 $ctx = stream_context_create();
-stream_context_set_option($ctx, 'ssl', 'local_cert', 'apn_development.pem');
+stream_context_set_option($ctx, 'ssl', 'local_cert', 'ipad_sandbox.pem');
 stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
 
-// Open a connection to the APNS server
 $fp = stream_socket_client(
 	'ssl://gateway.sandbox.push.apple.com:2195', $err,
 	$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
@@ -25,16 +34,6 @@ if (!$fp)
 
 echo 'Connected to APNS' . PHP_EOL;
 
-// Create the payload body
-$body['aps'] = array(
-	'alert' => $message,
-	'badge' => 18
-	);
-	
-$body['category'] = 'message';
-//$body['sender'] = 'jamesHAW';
-
-// Encode the payload as JSON
 $payload = json_encode($body);
 
 // Build the binary notification
@@ -48,5 +47,6 @@ if (!$result)
 else
 	echo 'Message successfully delivered' . PHP_EOL;
 
-// Close the connection to the server
 fclose($fp);
+    
+?>
